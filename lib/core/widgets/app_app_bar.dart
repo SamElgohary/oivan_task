@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:oivan_task/core/router/app_routes.dart';
 import '../theme/app_colors.dart';
 
 class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -16,7 +18,7 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: AppColors.primary,
       elevation: 0,
-      leading: showBack ? const BackButton(color: AppColors.textPrimary) : null,
+      leading: showBack ? const BackButton(color: AppColors.white) : null,
       title: Text(
         title.toUpperCase(),
         style: const TextStyle(
@@ -25,6 +27,15 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
 
         ),
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.bookmark,color: Colors.white,),
+          onPressed: () {
+            context.go(AppRoutes.bookmarksScreen);
+          },
+        ),
+      ],
+
       centerTitle: true,
     );
   }

@@ -22,6 +22,9 @@ class AppStrings {
   static const String appName = 'Oivan App';
   static const String usersTitle = 'Users';
   static const String bookmarksOnly = 'Bookmarked only';
+  static const String bookmarks = 'Bookmarks';
+  static const String noBookMarksYet = 'No bookmarks yet';
+  static const String reputation = 'Reputation: ';
   static const String allUsers = 'All users';
   static const String noResults = 'No results found';
   static const String somethingWentWrong = 'Something went wrong';

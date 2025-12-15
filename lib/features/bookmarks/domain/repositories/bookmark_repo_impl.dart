@@ -1,7 +1,7 @@
 import '../../../users/domain/entities/sof_user.dart';
+import '../../data/datasources/bookmark_hive_service.dart';
 import '../../data/models/bookmarked_user_model.dart';
 import '../../domain/repositories/bookmark_repository.dart';
-import '../../../../core/storage/bookmark_hive_service.dart';
 
 class BookmarkRepositoryImpl implements BookmarkRepository {
   BookmarkRepositoryImpl(this._service);
@@ -16,17 +16,19 @@ class BookmarkRepositoryImpl implements BookmarkRepository {
 
   @override
   Future<void> toggleBookmark(SofUser user) async {
-    final exists = await _service.isBookmarked(user.id);
+    final exists = await _service.contains(user.id);
 
     if (exists) {
       await _service.remove(user.id);
     } else {
-      await _service.add(BookmarkedUserModel.fromEntity(user));
+      await _service.add(
+        BookmarkedUserModel.fromEntity(user),
+      );
     }
   }
 
   @override
   Future<bool> isBookmarked(int userId) {
-    return _service.isBookmarked(userId);
+    return _service.contains(userId);
   }
 }

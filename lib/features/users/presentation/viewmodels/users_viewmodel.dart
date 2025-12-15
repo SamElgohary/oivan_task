@@ -29,7 +29,7 @@ class UsersViewModel extends Notifier<UsersState> {
     try {
       final result = await _getUsersUseCase(
         page: 1,
-        pageSize: 30,
+        pageSize: 5,
       );
 
       state = state.copyWith(
@@ -57,7 +57,7 @@ class UsersViewModel extends Notifier<UsersState> {
     try {
       final result = await _getUsersUseCase(
         page: nextPage,
-        pageSize: 30,
+        pageSize: 5,
       );
 
       state = state.copyWith(
