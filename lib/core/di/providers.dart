@@ -1,8 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../features/users/data/repositories/users_repo_impl.dart';
+import '../../features/users/domain/repositories/users_repository.dart';
+import '../../features/users/domain/usecases/get_users_usecase.dart';
 import '../network/api_client.dart';
 import '../network/dio_provider.dart';
 import '../storage/hive_service.dart';
-
+import '../../features/users/data/datasources/users_remote_ds.dart';
+import '../../features/users/data/datasources/users_remote_ds_impl.dart';
 
 
 // Provides an instance of ApiClient using the Dio instance from dioProvider
@@ -14,4 +18,28 @@ final apiClientProvider = Provider<ApiClient>((ref) {
 // Provides an instance of HiveService
 final hiveServiceProvider = Provider<HiveService>((ref) {
   return const HiveService();
+});
+
+
+
+
+final usersRemoteDataSourceProvider =
+Provider<UsersRemoteDataSource>((ref) {
+  final apiClient = ref.read(apiClientProvider);
+  return UsersRemoteDataSourceImpl(apiClient);
+});
+
+
+
+
+final usersRepositoryProvider = Provider<UsersRepository>((ref) {
+  final remoteDataSource = ref.read(usersRemoteDataSourceProvider);
+  return UsersRepositoryImpl(remoteDataSource);
+});
+
+
+
+final getUsersUseCaseProvider = Provider<GetUsersUseCase>((ref) {
+  final repository = ref.read(usersRepositoryProvider);
+  return GetUsersUseCase(repository);
 });
