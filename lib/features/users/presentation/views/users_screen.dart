@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/di/providers.dart';
+import '../../../../core/widgets/app_app_bar.dart';
 import '../viewmodels/users_state.dart';
 
 class UsersScreen extends ConsumerStatefulWidget {
@@ -53,12 +54,14 @@ class _UsersScreenState extends ConsumerState<UsersScreen> {
 
     if (state.isLoading && state.users.isEmpty) {
       return const Scaffold(
+        appBar: const AppAppBar(title: 'Users'),
         body: Center(child: CircularProgressIndicator()),
       );
     }
 
     if (state.errorMessage != null && state.users.isEmpty) {
       return Scaffold(
+        appBar: const AppAppBar(title: 'Users'),
         body: Center(
           child: Text(state.errorMessage!),
         ),
@@ -66,9 +69,7 @@ class _UsersScreenState extends ConsumerState<UsersScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Users'),
-      ),
+      appBar: const AppAppBar(title: 'Users'),
       body: ListView.builder(
         controller: _scrollController,
         itemCount: state.users.length + (state.isLoadingMore ? 1 : 0),

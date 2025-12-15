@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oivan_task/core/router/app_routes.dart';
+import 'package:oivan_task/core/theme/app_colors.dart';
+
+import '../../../../generated/assets.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -22,12 +25,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
+      backgroundColor: AppColors.background,
       body: Center(
-        child: Text(
-          'Application Initialized',
-          style: TextStyle(fontSize: 18),
-        ),
+        child: Image.asset(
+          Assets.imagesLogo,
+        )
       ),
     );
   }
