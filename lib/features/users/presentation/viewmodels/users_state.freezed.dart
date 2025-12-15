@@ -21,7 +21,7 @@ mixin _$UsersState {
   /// loading first page
   bool get isLoading => throw _privateConstructorUsedError;
 
-  /// loading next page (pagination)
+  /// loading pagination
   bool get isLoadingMore => throw _privateConstructorUsedError;
 
   /// error message (null = no error)
@@ -30,7 +30,7 @@ mixin _$UsersState {
   /// API has more pages
   bool get hasMore => throw _privateConstructorUsedError;
 
-  /// current loaded page
+  /// current page index
   int get currentPage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -170,7 +170,7 @@ class __$$UsersStateImplCopyWithImpl<$Res>
 
 class _$UsersStateImpl implements _UsersState {
   const _$UsersStateImpl(
-      {final List<SofUser> users = const [],
+      {final List<SofUser> users = const <SofUser>[],
       this.isLoading = false,
       this.isLoadingMore = false,
       this.errorMessage,
@@ -192,7 +192,7 @@ class _$UsersStateImpl implements _UsersState {
   @JsonKey()
   final bool isLoading;
 
-  /// loading next page (pagination)
+  /// loading pagination
   @override
   @JsonKey()
   final bool isLoadingMore;
@@ -206,7 +206,7 @@ class _$UsersStateImpl implements _UsersState {
   @JsonKey()
   final bool hasMore;
 
-  /// current loaded page
+  /// current page index
   @override
   @JsonKey()
   final int currentPage;
@@ -267,7 +267,7 @@ abstract class _UsersState implements UsersState {
   bool get isLoading;
   @override
 
-  /// loading next page (pagination)
+  /// loading pagination
   bool get isLoadingMore;
   @override
 
@@ -279,7 +279,7 @@ abstract class _UsersState implements UsersState {
   bool get hasMore;
   @override
 
-  /// current loaded page
+  /// current page index
   int get currentPage;
   @override
   @JsonKey(ignore: true)

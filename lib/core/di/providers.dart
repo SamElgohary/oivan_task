@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../features/users/data/repositories/users_repo_impl.dart';
 import '../../features/users/domain/repositories/users_repository.dart';
 import '../../features/users/domain/usecases/get_users_usecase.dart';
+import '../../features/users/presentation/viewmodels/users_state.dart';
+import '../../features/users/presentation/viewmodels/users_viewmodel.dart';
 import '../network/api_client.dart';
 import '../network/dio_provider.dart';
 import '../storage/hive_service.dart';
@@ -43,3 +45,9 @@ final getUsersUseCaseProvider = Provider<GetUsersUseCase>((ref) {
   final repository = ref.read(usersRepositoryProvider);
   return GetUsersUseCase(repository);
 });
+
+
+final usersViewModelProvider =
+NotifierProvider<UsersViewModel, UsersState>(
+  UsersViewModel.new,
+);
