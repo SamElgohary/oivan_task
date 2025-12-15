@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../features/bookmarks/presentation/bookmark_viewmodel.dart';
 import '../../features/users/data/repositories/users_repo_impl.dart';
 import '../../features/users/domain/repositories/users_repository.dart';
 import '../../features/users/domain/usecases/get_users_usecase.dart';
@@ -50,4 +51,10 @@ final getUsersUseCaseProvider = Provider<GetUsersUseCase>((ref) {
 final usersViewModelProvider =
 NotifierProvider<UsersViewModel, UsersState>(
   UsersViewModel.new,
+);
+
+
+final bookmarkViewModelProvider =
+NotifierProvider<BookmarkViewModel, Set<int>>(
+  BookmarkViewModel.new,
 );
