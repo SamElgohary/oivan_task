@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:oivan_task/core/router/app_routes.dart';
+import 'package:oivan_task/features/splash_screen/presentation/views/splash_screen.dart';
+
+import '../../features/users/presentation/views/users_screen.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-    initialLocation: '/',
+    initialLocation: AppRoutes.splash,
     routes: [
       GoRoute(
-        path: '/',
-        builder: (_, __) => const _BootstrapScreen(),
+        path: AppRoutes.splash,
+        name:AppRoutes.splash ,
+        builder: (_, __) => const SplashScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.usersScreen,
+        name: AppRoutes.usersScreen,
+        builder: (_, __) => const UsersScreen(),
       ),
     ],
   );
 });
-
-class _BootstrapScreen extends StatelessWidget {
-  const _BootstrapScreen();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Application Initialized',
-          style: TextStyle(fontSize: 18),
-        ),
-      ),
-    );
-  }
-}
