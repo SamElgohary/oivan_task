@@ -1,4 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../features/bookmarks/domain/repositories/bookmark_repo_impl.dart';
+import '../../features/bookmarks/domain/repositories/bookmark_repository.dart';
 import '../../features/bookmarks/presentation/bookmark_viewmodel.dart';
 import '../../features/users/data/repositories/users_repo_impl.dart';
 import '../../features/users/domain/repositories/users_repository.dart';
@@ -10,6 +12,7 @@ import '../network/dio_provider.dart';
 import '../storage/hive_service.dart';
 import '../../features/users/data/datasources/users_remote_ds.dart';
 import '../../features/users/data/datasources/users_remote_ds_impl.dart';
+import '../../core/storage/bookmark_hive_service.dart';
 
 
 // Provides an instance of ApiClient using the Dio instance from dioProvider
@@ -53,6 +56,17 @@ NotifierProvider<UsersViewModel, UsersState>(
   UsersViewModel.new,
 );
 
+
+final bookmarkHiveServiceProvider = Provider<BookmarkHiveService>((ref) {
+  return BookmarkHiveService();
+});
+
+
+
+final bookmarkRepositoryProvider = Provider<BookmarkRepository>((ref) {
+  final service = ref.read(bookmarkHiveServiceProvider);
+  return BookmarkRepositoryImpl(service);
+});
 
 final bookmarkViewModelProvider =
 NotifierProvider<BookmarkViewModel, Set<int>>(

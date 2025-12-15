@@ -52,6 +52,10 @@ class _UsersScreenState extends ConsumerState<UsersScreen> {
   Widget build(BuildContext context) {
     final UsersState state = ref.watch(usersViewModelProvider);
 
+    final bookmarks = ref.watch(bookmarkViewModelProvider);
+    final bookmarkNotifier =
+    ref.read(bookmarkViewModelProvider.notifier);
+
     if (state.isLoading && state.users.isEmpty) {
       return const Scaffold(
         appBar: const AppAppBar(title: 'Users'),
@@ -86,6 +90,17 @@ class _UsersScreenState extends ConsumerState<UsersScreen> {
           return ListTile(
             leading: CircleAvatar(
               backgroundImage: NetworkImage(user.profileImage),
+            ),
+            trailing: IconButton(
+              icon: Icon(
+                bookmarks.contains(user.id)
+                    ? Icons.bookmark
+                    : Icons.bookmark_border,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              onPressed: () {
+                bookmarkNotifier.toggle(user);
+              },
             ),
             title: Text(user.displayName),
             subtitle: Text('Reputation: ${user.reputation}'),
