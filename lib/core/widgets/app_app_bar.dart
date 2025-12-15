@@ -7,18 +7,20 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AppAppBar({
     super.key,
     required this.title,
-    this.showBack = false,
+    this.showLeading = false,
+    this.hasActions = false,
   });
 
   final String title;
-  final bool showBack;
+  final bool showLeading;
+  final bool hasActions;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: AppColors.primary,
       elevation: 0,
-      leading: showBack ? const BackButton(color: AppColors.white) : null,
+      leading: showLeading ? const BackButton(color: AppColors.white) : null,
       title: Text(
         title.toUpperCase(),
         style: const TextStyle(
@@ -28,12 +30,12 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
-        IconButton(
+       hasActions ? IconButton(
           icon: const Icon(Icons.bookmark,color: Colors.white,),
           onPressed: () {
-            context.go(AppRoutes.bookmarksScreen);
+            context.pushNamed(AppRoutes.bookmarksScreen);
           },
-        ),
+        ) :SizedBox.shrink(),
       ],
 
       centerTitle: true,
