@@ -15,13 +15,13 @@ class BookmarksScreen extends ConsumerWidget {
 
     if (users.isEmpty) {
       return const Scaffold(
-          appBar: const AppAppBar(title: AppStrings.bookmarks, showBack: true),
+          appBar: const AppAppBar(title: AppStrings.bookmarks, showLeading: true,hasActions: false,),
           body: Center(child: Text(AppStrings.noBookMarksYet)));
     };
 
 
     return Scaffold(
-      appBar: const AppAppBar(title: AppStrings.bookmarks, showBack: true),
+      appBar: const AppAppBar(title: AppStrings.bookmarks, showLeading: true,hasActions: false,),
       body: ListView.separated(
         itemCount: users.length,
         separatorBuilder: (_, __) => const Divider(),
