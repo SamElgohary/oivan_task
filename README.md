@@ -1,23 +1,25 @@
-📱 Oivan Task – Flutter Application
+Oivan Task – Flutter Application
 
-This project is a Flutter application built as a technical task, focusing on clean architecture, scalability, and best practices rather than feature overload.
+This project is a Flutter application built as a technical task, focusing on clean architecture, 
+scalability, and best practices rather than feature overload.
 
-✨ Features
+Features
 
-✅ Users list fetched from StackExchange API
-✅ Pagination with infinite scrolling
-✅ Bookmark users locally using Hive
-✅ Persistent bookmark state across app restarts
-✅ Clean Architecture (Data / Domain / Presentation)
-✅ Riverpod 3 (Notifier-based state management)
-✅ Dio for networking
-✅ GoRouter for navigation
-✅ Centralized theme, colors, and UI components
-✅ Scalable Hive setup (ready for future features)
+- Users list fetched from StackExchange API
+- Pagination with infinite scrolling
+- Bookmark users locally using Hive
+- Persistent bookmark state across app restarts
+- Clean Architecture (Data / Domain / Presentation)
+- Riverpod 3 (Notifier-based state management)
+- Dio for networking
+- GoRouter for navigation
+- Centralized theme, colors, and reusable UI components
+- Scalable Hive setup (ready for future features)
 
-🧱 Architecture Overview
 
-The project follows Clean Architecture principles:
+Architecture Overview
+
+The project follows Clean Architecture principles.
 
 lib/
 ├── core/
@@ -43,96 +45,55 @@ lib/
 └── main.dart
 
 
+Each feature is isolated and follows the same structure:
 
-Each feature is isolated and follows:
+- Data: API and local storage models
+- Domain: Entities and repositories
+- Presentation: ViewModels and UI
 
-Data → API / Local storage models
+State Management
 
-Domain → Entities & repositories
+- Riverpod 3
+- Uses Notifier and NotifierProvider
+- ViewModels handle business logic only
+- UI is fully reactive and stateless where possible
 
-Presentation → ViewModels & UI
+Local Storage (Hive)
 
-🧠 State Management
+- Bookmarks are stored locally using Hive.
+- Design decisions
+- Store full user data instead of only user IDs
+- Avoid unnecessary API calls
+- Faster UI rendering
+- Future-ready for offline-friendly behavior
+- Storage structure
+- HiveManager: App-wide Hive initialization
+- HiveBoxProvider: Generic and reusable box handler
+- Feature-specific services (e.g. BookmarkHiveService)
+- This design prevents box duplication and type conflicts while keeping storage scalable.
 
-Riverpod 3
+UI and Theming
 
-Uses Notifier and NotifierProvider
+- Centralized AppColors
+- Global AppTheme
+- Reusable AppAppBar component
+- Consistent Material 3 styling
 
-ViewModels handle business logic only
+Navigation
 
-UI is fully reactive and stateless where possible
+- GoRouter
+- Clean and well-defined routes
+- Easy to extend with new screens
 
-💾 Local Storage (Hive)
+Tech Stack
 
-Bookmarks are stored locally using Hive.
+- Flutter
+- Dart
+- Riverpod 3
+- Dio
+- Hive
+- GoRouter
 
-Design decisions:
 
-Store full user data instead of only user IDs
-
-Avoid unnecessary API calls
-
-Faster UI rendering
-
-Future-ready for offline-friendly behavior
-
-Storage structure:
-
-HiveManager → App-wide initialization
-
-HiveBoxProvider → Generic, reusable box handler
-
-Feature-specific services (e.g. BookmarkHiveService)
-
-This prevents box duplication and type conflicts.
-
-🎨 UI & Theming
-
-Centralized AppColors
-
-Global AppTheme
-
-Reusable AppAppBar
-
-Consistent Material 3 styling
-
-🚦 Navigation
-
-GoRouter
-
-Bootstrap (splash) screen on app start
-
-Clean route definitions
-
-Easy to extend with new screens
-
-🔧 Tech Stack
-
-Flutter
-
-Dart
-
-Riverpod 3
-
-Dio
-
-Hive
-
-GoRouter
-
-📌 Notes & Decisions
-
-User details screen was not implemented as it was not part of the requirements.
-
-Focus was on architecture quality, stability, and scalability.
-
-API rate limiting (HTTP 429) was handled by minimizing unnecessary requests.
-
-▶️ Getting Started
-flutter pub get
-flutter pub run build_runner build --delete-conflicting-outputs
-flutter run
-
-👨‍💻 Author
-
-Developed as part of a technical evaluation task, with emphasis on clean code, maintainability, and real-world architecture practices.
+ Getting Started
+ 
