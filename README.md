@@ -95,5 +95,39 @@ Tech Stack
 - GoRouter
 
 
- Getting Started
+Getting Started
+Follow the steps below to run the project locally.
+
+1. Install Flutter SDK
+Make sure Flutter is installed on your machine.
+Follow the official installation guide:
+https://docs.flutter.dev/get-started/install
+Verify the installation by running:
+flutter doctor
+
+2. Clone the Repository
+Clone the project from GitHub:
+git clone https://github.com/SamElgohary/oivan_task.git
+cd oivan_task
+
+3. Install Dependencies
+Fetch all required Flutter packages:
+flutter pub get
+
+4. Generate Required Files
+Some files (Hive adapters and other generated code) are created using build_runner.
+Run the following command:
+flutter pub run build_runner build --delete-conflicting-outputs
+
+5. Run the Application
+Start the application on a connected device or emulator:
+flutter run
+
+Notes
+- Make sure an emulator is running or a physical device is connected.
+- The application targets modern Flutter versions and uses Material 3.
+- Internet connection is required to fetch users from the StackExchange API
+
+
+
  
