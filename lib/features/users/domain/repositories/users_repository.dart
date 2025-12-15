@@ -1,7 +1,7 @@
-import '../entities/sof_user.dart';
+import '../entities/paginated_users.dart';
 
 abstract class UsersRepository {
-  Future<List<SofUser>> getUsers({
+  Future<PaginatedUsers> getUsers({
     required int page,
     required int pageSize,
   });

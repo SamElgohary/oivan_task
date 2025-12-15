@@ -1,4 +1,4 @@
-import '../../domain/entities/sof_user.dart';
+import '../../domain/entities/paginated_users.dart';
 import '../../domain/repositories/users_repository.dart';
 import '../datasources/users_remote_ds.dart';
 
@@ -8,7 +8,7 @@ class UsersRepositoryImpl implements UsersRepository {
   final UsersRemoteDataSource _remoteDataSource;
 
   @override
-  Future<List<SofUser>> getUsers({
+  Future<PaginatedUsers> getUsers({
     required int page,
     required int pageSize,
   }) async {
@@ -17,8 +17,13 @@ class UsersRepositoryImpl implements UsersRepository {
       pageSize: pageSize,
     );
 
-    return response.items
+    final users = response.items
         .map((model) => model.toEntity())
         .toList();
+
+    return PaginatedUsers(
+      users: users,
+      hasMore: response.hasMore,
+    );
   }
 }
