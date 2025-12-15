@@ -21,12 +21,12 @@ The project follows Clean Architecture principles:
 
 lib/
 ├── core/
-│   ├── di/                # Dependency injection
-│   ├── network/           # Dio & API client
-│   ├── router/            # GoRouter configuration
-│   ├── storage/           # Hive manager & box provider
-│   ├── theme/             # App colors & theme
-│   └── widgets/           # Shared UI components
+│   ├── di/            # Dependency injection
+│   ├── network/       # API & Dio setup
+│   ├── router/        # App navigation (GoRouter)
+│   ├── storage/       # Hive manager & box provider
+│   ├── theme/         # App colors & theme
+│   └── widgets/       # Shared UI components
 │
 ├── features/
 │   ├── users/
@@ -41,6 +41,7 @@ lib/
 │
 ├── app.dart
 └── main.dart
+
 
 
 Each feature is isolated and follows:
